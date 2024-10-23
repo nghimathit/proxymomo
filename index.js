@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // Thời gian khóa gửi email (15 phút)
-const EMAIL_COOLDOWN = 10*60*1000;
+const EMAIL_COOLDOWN = 5*60*1000;
 let lastEmailSentTime = 0;
 
 // Middleware cho phép CORS
