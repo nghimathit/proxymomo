@@ -99,6 +99,25 @@ app.get("/api/transaction/v2/transactions/statistics", async (req, res) => {
   }
 });
 
+// Route để lấy dữ liệu paylater của merchant
+app.get("/api/profile/v2/merchants/:merchantId/paylater", async (req, res) => {
+  const { merchantId } = req.params; // Lấy merchantId từ params
+  try {
+    const response = await axios.get(
+      `https://business.momo.vn/api/profile/v2/merchants/${merchantId}/paylater?language=vi`,
+      {
+        headers: {
+          Authorization: req.headers.authorization,
+        },
+      }
+    );
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).send(error.toString());
+  }
+});
+
+
 // Server proxy lắng nghe trên cổng 3001
 app.listen(port, () => {
   console.log(`Proxy server đang chạy tại http://localhost:${port}`);
